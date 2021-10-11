@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TodoIt.Data;
+﻿using TodoIt.Data;
 using Xunit;
 
 namespace TodoItTests.Data
