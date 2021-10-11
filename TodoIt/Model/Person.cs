@@ -10,11 +10,16 @@ namespace TodoIt.Model
         private String firstName;
         private String lastName;
 
+        public Person()
+        {
+
+        }
+
         public Person(int personId, String firstName, String lastName)
         {
             this.personId = personId;
-            this.firstName = NullOrEmpty(firstName);
-            this.lastName = NullOrEmpty(lastName);
+            this.firstName = NotNullOrEmpty(firstName);
+            this.lastName = NotNullOrEmpty(lastName);
         }
 
         public int PersonId
@@ -27,7 +32,7 @@ namespace TodoIt.Model
             get => firstName;
             set
             {
-                firstName = NullOrEmpty(value);
+                firstName = NotNullOrEmpty(value);
             }
         }
 
@@ -36,11 +41,11 @@ namespace TodoIt.Model
             get => lastName; 
             set 
             {
-                lastName = NullOrEmpty(value);
+                lastName = NotNullOrEmpty(value);
             }
         }
 
-        private String NullOrEmpty(String value)
+        private String NotNullOrEmpty(String value)
         {
             if (String.IsNullOrEmpty(value))
             {
