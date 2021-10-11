@@ -11,7 +11,9 @@ namespace TodoItTests
 
         public PersonTests()
         {
-            testPerson = new Person(1, "firstName", "lastName");
+            testPerson = new Person(1);
+            testPerson.FirstName = "firstName";
+            testPerson.LastName = "lastName";
         }
 
         [Fact]
@@ -36,12 +38,6 @@ namespace TodoItTests
         public void SetFirstNameEmptyTest()
         {
             Assert.Throws<ArgumentException>(() => testPerson.FirstName = String.Empty);
-        }
-
-        [Fact]
-        public void ConstructorValueEmptyTest()
-        {
-            Assert.Throws<ArgumentException>(() => new Person(2, null, "lastName"));
         }
 
         [Fact]

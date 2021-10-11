@@ -10,16 +10,9 @@ namespace TodoIt.Model
         private String firstName;
         private String lastName;
 
-        public Person()
-        {
-
-        }
-
-        public Person(int personId, String firstName, String lastName)
+        public Person(int personId)
         {
             this.personId = personId;
-            this.firstName = NotNullOrEmpty(firstName);
-            this.lastName = NotNullOrEmpty(lastName);
         }
 
         public int PersonId
