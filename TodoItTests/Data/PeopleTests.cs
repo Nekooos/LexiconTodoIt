@@ -12,6 +12,8 @@ namespace TodoItTests.Data
         public PeopleTests()
         {
             people = new People();
+            PersonSequencer.Reset();
+            people.clear();
         }
 
         public void Dispose()
@@ -72,6 +74,8 @@ namespace TodoItTests.Data
         {
             people.Add("firstName1", "lastName1");
             people.Add("firstName2", "lastName2");
+
+            Assert.Equal(2, people.Size());
 
             people.clear();
 

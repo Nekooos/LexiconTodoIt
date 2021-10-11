@@ -6,6 +6,10 @@ namespace TodoItTests.Data
 {
     public class PersonSequencerTests : IDisposable
     {
+        public PersonSequencerTests()
+        {
+            PersonSequencer.Reset();
+        }
         public void Dispose()
         {
             PersonSequencer.Reset();
@@ -14,9 +18,11 @@ namespace TodoItTests.Data
         [Fact]
         public void NextPersonIdTest()
         {
+            PersonSequencer.NextPersonId();
+            PersonSequencer.NextPersonId();
             int personId = PersonSequencer.NextPersonId();
 
-            Assert.Equal(1, personId);
+            Assert.Equal(3, personId);
         }
 
         [Fact]

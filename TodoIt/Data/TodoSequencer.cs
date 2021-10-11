@@ -7,7 +7,7 @@ namespace TodoIt.Data
 
         public static int NextTodoId()
         {
-            return ++todoId;
+            return todoId = todoId+1;
         }
 
         public static void Reset()

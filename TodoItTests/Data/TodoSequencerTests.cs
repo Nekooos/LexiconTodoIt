@@ -1,11 +1,16 @@
 ﻿using TodoIt.Data;
 using Xunit;
+using System;
 
 namespace TodoItTests.Data
 {
-    public class TodoSequencerTests
+    public class TodoSequencerTests : IDisposable
     {
         public TodoSequencerTests()
+        {
+            TodoSequencer.Reset();
+        }
+        public void Dispose()
         {
             TodoSequencer.Reset();
         }

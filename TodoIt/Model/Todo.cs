@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TodoIt.Model
 {
@@ -11,10 +9,9 @@ namespace TodoIt.Model
         private bool done;
         private Person assignee;
 
-        public Todo(int todoId, String description)
+        public Todo(int todoId)
         {
             this.todoId = todoId;
-            this.description = description;
         }
 
         public int TodoId

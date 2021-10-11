@@ -10,7 +10,8 @@ namespace TodoItTests.Model
 
         public TodoTests()
         {
-            testTodo = new Todo(1, "Description");
+            testTodo = new Todo(1);
+            testTodo.Description = "Description";
             testTodo.Done = false;
             testTodo.Person = new Person(1);
             testTodo.Person.FirstName = "firstname";
