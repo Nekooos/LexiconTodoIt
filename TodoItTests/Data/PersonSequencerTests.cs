@@ -1,11 +1,12 @@
-﻿using TodoIt.Data;
+﻿using System;
+using TodoIt.Data;
 using Xunit;
 
 namespace TodoItTests.Data
 {
-    public class PersonSequencerTests
+    public class PersonSequencerTests : IDisposable
     {
-        public PersonSequencerTests()
+        public void Dispose()
         {
             PersonSequencer.Reset();
         }
