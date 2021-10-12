@@ -74,8 +74,6 @@ namespace TodoItTests.Data
         [Fact]
         public void FindAllTest()
         {
-            TodoSequencer.Reset();
-
             todoItems.Add("description1", false);
             todoItems.Add("description2", false);
             Todo todo = todoItems.Add("description3", false);
@@ -94,8 +92,8 @@ namespace TodoItTests.Data
         {
             todoItems.Add("description1", false);
             todoItems.Add("description2", false);
-            Todo todo1 = todoItems.Add("description3", true);
-            Todo todo2 = todoItems.Add("description4", true);
+            todoItems.Add("description3", true);
+            todoItems.Add("description4", true);
 
             Todo[] todos = todoItems.FindByDoneStatus(false);
 
@@ -180,6 +178,21 @@ namespace TodoItTests.Data
             Assert.Equal(1, todos[0].TodoId);
             Assert.Equal(2, todos[1].TodoId);
             Assert.Equal(4, todos[2].TodoId);
-        } 
+        }
+
+        [Fact]
+        public void RemoveTestIdNotFound()
+        {
+            todoItems.Add("description1", false);
+            todoItems.Add("description2", false);
+            todoItems.Add("description3", false);
+            todoItems.Add("description4", false);
+
+            todoItems.Remove(26);
+
+            Todo[] todos = todoItems.findAll();
+
+            Assert.True(todos.Length == 4);
+        }
     }
 }

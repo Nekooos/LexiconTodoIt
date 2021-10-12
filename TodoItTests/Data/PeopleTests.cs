@@ -11,8 +11,8 @@ namespace TodoItTests.Data
 
         public PeopleTests()
         {
-            people = new People();
             PersonSequencer.Reset();
+            people = new People();
             people.clear();
         }
 
