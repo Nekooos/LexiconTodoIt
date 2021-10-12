@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TodoIt.Model;
 
 namespace TodoIt.Data
@@ -58,6 +56,64 @@ namespace TodoIt.Data
         public void clear()
         {
             todoArray = new Todo[0];
+        }
+
+        public Todo[] FindByDoneStatus(bool done)
+        {
+            Todo[] sortedArray = new Todo[0];
+
+            
+            foreach(Todo todo in todoArray)
+            {
+                if(todo.Done == done)
+                {
+                    Array.Resize(ref sortedArray, sortedArray.Length+1);
+                    sortedArray[sortedArray.Length-1] = todo;
+                }
+            }
+            return sortedArray;
+        }
+
+        public Todo[] FindByAssignee(int personId)
+        {
+            Todo[] sortedArray = new Todo[0];
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Person != null && todo.Person.PersonId == personId)
+                {
+                    Array.Resize(ref sortedArray, sortedArray.Length + 1);
+                    sortedArray[sortedArray.Length-1] = todo;
+                }
+            }
+            return sortedArray;
+        }
+
+        public Todo[] FindByAssignee(Person person)
+        {
+            Todo[] sortedArray = new Todo[0];
+            foreach (Todo todo in todoArray)
+            {
+                if (todo.Person != null && todo.Person.PersonId == person.PersonId)
+                {
+                    Array.Resize(ref sortedArray, sortedArray.Length + 1);
+                    sortedArray[sortedArray.Length-1] = todo;
+                }
+            }
+            return sortedArray;
+        }
+
+        public Todo[] FindUnassignedTodoItems()
+        {
+            Todo[] sortedArray = new Todo[0];
+            foreach (Todo todo in todoArray)
+            {
+                if (null == todo.Person)
+                {
+                    Array.Resize(ref sortedArray, sortedArray.Length + 1);
+                    sortedArray[sortedArray.Length-1] = todo;
+                }
+            }
+            return sortedArray;
         }
     }
  

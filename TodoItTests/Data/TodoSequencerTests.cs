@@ -28,6 +28,7 @@ namespace TodoItTests.Data
         {
             TodoSequencer.NextTodoId();
             TodoSequencer.NextTodoId();
+
             TodoSequencer.Reset();
 
             Assert.Equal(1, TodoSequencer.NextTodoId());

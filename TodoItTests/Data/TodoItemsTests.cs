@@ -75,7 +75,6 @@ namespace TodoItTests.Data
         public void findAllTest()
         {
             TodoSequencer.Reset();
-            todoItems.clear();
 
             todoItems.Add("description1");
             todoItems.Add("description2");
@@ -88,6 +87,82 @@ namespace TodoItTests.Data
             Assert.Equal(3, todo.TodoId);
 
             Assert.Equal(3, todos[2].TodoId);
+        }
+
+        [Fact]
+        public void FindByDoneStatusTest()
+        {
+            todoItems.Add("description1");
+            todoItems.Add("description2");
+            Todo todo1 = todoItems.Add("description3");
+            todo1.Done = true;
+            Todo todo2 = todoItems.Add("description4");
+            todo2.Done = true;
+
+            Todo[] todos = todoItems.FindByDoneStatus(false);
+
+            Assert.True(todos.Length == 2);
+            Assert.Equal(2, todos[1].TodoId);
+        }
+
+
+        [Fact]
+        public void FindByAssigneeIdTest()
+        {
+            Person person1 = new Person(1);
+            Person person2 = new Person(2);
+
+            Todo todo1 = todoItems.Add("description1");
+            todo1.Person = person1;
+            Todo todo2 = todoItems.Add("description2");
+            todo2.Person = person1;
+            Todo todo3 = todoItems.Add("description3");
+            todo3.Person = person2;
+            Todo todo4 = todoItems.Add("description4");
+            todo4.Person = person2;
+
+            Todo[] todos = todoItems.FindByAssignee(2);
+
+            Assert.True(todos.Length == 2);
+            Assert.Equal(4, todos[1].TodoId);
+        }
+
+
+        [Fact]
+        public void FindByAssigneePersonTest()
+        {
+            Person person1 = new Person(1);
+
+            Todo todo1 = todoItems.Add("description1");
+            todo1.Person = person1;
+            Todo todo2 = todoItems.Add("description2");
+            todo2.Person = person1;
+            todoItems.Add("description3");
+            todoItems.Add("description4");
+
+            Todo[] todos = todoItems.FindByAssignee(person1);
+
+            Assert.True(todos.Length == 2);
+            Assert.Equal(1, todos[0].TodoId);
+            Assert.Equal(2, todos[1].TodoId);
+        }
+
+        [Fact]
+        public void FindUnassignedTodoItemsTest()
+        {
+            Person person1 = new Person(1);
+
+            Todo todo1 = todoItems.Add("description1");
+            todo1.Person = person1;
+            Todo todo2 = todoItems.Add("description2");
+            todo2.Person = person1;
+            todoItems.Add("description3");
+            todoItems.Add("description4");
+
+            Todo[] todos = todoItems.FindUnassignedTodoItems();
+
+            Assert.True(todos.Length == 2);
+            Assert.Equal(4, todos[1].TodoId);
         }
     }
 }
