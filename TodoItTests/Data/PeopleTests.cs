@@ -93,6 +93,25 @@ namespace TodoItTests.Data
             Assert.True(persons.Length == 2);
             Assert.Equal(1, persons[0].PersonId);
             Assert.Equal(2, persons[1].PersonId);
-        } 
+        }
+
+        [Fact]
+        public void RemoveTest()
+        {
+            people.Add("firstName1", "lastName1");
+            people.Add("firstName1", "lastName1");
+            people.Add("firstName1", "lastName1");
+            people.Add("firstName1", "lastName1");
+
+            people.Remove(3);
+
+            Person[] persons = people.findAll();
+
+            Assert.True(persons.Length == 3);
+
+            Assert.Equal(1, persons[0].PersonId);
+            Assert.Equal(2, persons[1].PersonId);
+            Assert.Equal(4, persons[2].PersonId);
+        }
     }
 }

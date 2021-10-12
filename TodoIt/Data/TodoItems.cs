@@ -29,7 +29,7 @@ namespace TodoIt.Data
             return null;
         }
 
-        public Todo Add(String description)
+        public Todo Add(String description, bool done)
         {
             Todo[] tempArray = todoArray;
             int newLength = todoArray.Length+1;
@@ -40,16 +40,16 @@ namespace TodoIt.Data
                 {
                     todoArray[i] = tempArray[i];
                 }
-            todoArray[newLength - 1] = CreateTodo(description);
+            todoArray[newLength - 1] = CreateTodo(description, done);
             return todoArray[newLength - 1];
         }
 
-        private Todo CreateTodo(String description)
+        private Todo CreateTodo(String description, bool done)
         {
             int todoId = TodoSequencer.NextTodoId();
             Todo todo = new Todo(todoId);
             todo.Description = description;
-            todo.Done = false;
+            todo.Done = done;
             return todo;
         }
 
@@ -114,6 +114,40 @@ namespace TodoIt.Data
                 }
             }
             return sortedArray;
+        }
+
+        public void Remove(int id) 
+        {
+            int index = findIndex(id);
+
+            if(index > -1)
+            {
+                int newLength = todoArray.Length - 1;
+                Todo[] tempArray = todoArray;
+                todoArray = new Todo[newLength];
+
+                int count = 0;
+                for (int i = 0; i < tempArray.Length; i++)
+                {
+                    if(i != index)
+                    {
+                        todoArray[count] = tempArray[i];
+                        count++;
+                    }
+                }
+            }
+        }
+
+        private int findIndex(int id)
+        {
+            for (int i = 0; i < todoArray.Length; i++)
+            {
+                if(todoArray[i].TodoId == id)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
  

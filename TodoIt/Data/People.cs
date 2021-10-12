@@ -57,5 +57,39 @@ namespace TodoIt.Data
         {
             personArray = new Person[0];
         }
+
+        public void Remove(int id)
+        {
+            int index = findIndex(id);
+
+            if (index > -1)
+            {
+                int newLength = personArray.Length - 1;
+                Person[] tempArray = personArray;
+                personArray = new Person[newLength];
+
+                int count = 0;
+                for (int i = 0; i < tempArray.Length; i++)
+                {
+                    if (i != index)
+                    {
+                        personArray[count] = tempArray[i];
+                        count++;
+                    }
+                }
+            }
+        }
+
+        private int findIndex(int id)
+        {
+            for (int i = 0; i < personArray.Length; i++)
+            {
+                if (personArray[i].PersonId == id)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
 }
